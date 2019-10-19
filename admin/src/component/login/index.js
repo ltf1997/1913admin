@@ -1,5 +1,6 @@
 import React from 'react'
 import { Form, Icon, Input, Button, Checkbox,Card,message } from 'antd';
+import './index.less'
 class Login extends React.Component {
   submit=()=>{
     console.log('登录')
@@ -9,6 +10,10 @@ class Login extends React.Component {
       if(err){
         message.error('信息有误')
       }else{
+        this.$axios.get('/yapi/admin/login',{us:123,ps:123})
+          .then((data)=>{
+            console.log(data)
+          })
         message.success('登录成功 1s后跳转...',1,()=>{
           this.props.history.push('/admin')
         })
@@ -19,6 +24,7 @@ class Login extends React.Component {
     // console.log(this,'登录组件')
     let {getFieldDecorator} = this.props.form
     return (
+      <div className="login-box">
       <Card style={{width:'400px',position:"fixed",top:'17vh',right:'70px'}}>
         <div onSubmit={this.handleSubmit} className="login-form">
           <Form.Item>   
@@ -57,6 +63,7 @@ class Login extends React.Component {
           </Form.Item>
         </div>
       </Card>
+      </div>
     );
   }
 }

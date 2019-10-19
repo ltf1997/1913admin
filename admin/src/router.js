@@ -5,7 +5,6 @@ import {HashRouter,Switch,Redirect,Route} from 'react-router-dom'
 // import Home from './component/home'
 // import User from './component/user'
 //使用路由懒加载
-import CustomNav from './component/customNav'
 
 import ComponentInport from './utils/componentImport'
 
@@ -25,7 +24,6 @@ class RootRouter extends Component{
           <Route path="/admin" render={()=>{
             return(
               <Admin>
-                <CustomNav/>
                 <Route path="/admin/home" component={Home}/>
                 <Route path="/admin/user" component={User}/>
               </Admin>

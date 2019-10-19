@@ -4,8 +4,8 @@ import {Menu} from 'antd'
 const {SubMenu} = Menu
 
 let navData =[
-  {name:'首页',path:'./home'},
-  {name:'设置',path:'./setting'},
+  {name:'首页',path:'/admin/home'},
+  {name:'设置',path:'/admin/setting'},
   {name:'用户管理',path:'/user',
     children:[
       {name:'用户列表',path:'/user/list'},
@@ -15,6 +15,9 @@ let navData =[
 ]
 
 class CustomNav extends React.Component{
+  jump=(path)=>{
+    this.props.history.push(path)
+  }
   renderItem=(data)=>{     //
     return data.map((item,index)=>{
       if(item.children){
@@ -24,7 +27,7 @@ class CustomNav extends React.Component{
           </SubMenu>
         )
       }else{
-        return <Menu.Item>{item.name}</Menu.Item>
+        return <Menu.Item onClick={this.jump.bind(this,item.path)}>{item.name}</Menu.Item>
       }
       
     })
