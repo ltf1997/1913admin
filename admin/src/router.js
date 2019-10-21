@@ -11,7 +11,8 @@ import ComponentInport from './utils/componentImport'
 const Login = ComponentInport(()=>import('./component/login'))//仅传一个参数  另一个为默认值
 const Admin = ComponentInport(()=>import('./component/admin'))
 const Home = ComponentInport(()=>import('./component/home'))
-const User = ComponentInport(()=>import('./component/user'))
+const UserList = ComponentInport(()=>import('./component/user'))
+const UserAdd = ComponentInport(()=>import('./component/userAdd'))
 //打包回多出几个相应文件
 class RootRouter extends Component{
   render(){
@@ -25,7 +26,8 @@ class RootRouter extends Component{
             return(
               <Admin>
                 <Route path="/admin/home" component={Home}/>
-                <Route path="/admin/user" component={User}/>
+                <Route path="/admin/user/list" component={UserList}/>
+                <Route path="/admin/user/add" component={UserAdd}/>
               </Admin>
             )
           }}/>

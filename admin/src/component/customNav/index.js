@@ -1,15 +1,17 @@
 import React from 'react'
 import {withRouter} from 'react-router-dom'
 import {Menu} from 'antd'
-const {SubMenu} = Menu
+import './index.less'
 
+
+const {SubMenu} = Menu
 let navData =[
   {name:'首页',path:'/admin/home'},
   {name:'设置',path:'/admin/setting'},
   {name:'用户管理',path:'/user',
     children:[
-      {name:'用户列表',path:'/user/list'},
-      {name:'用户删除',path:'/user/del'},
+      {name:'用户列表',path:'/admin/user/list'},
+      {name:'用户添加',path:'/admin/user/add'},
     ]
   }
 ]
@@ -22,12 +24,12 @@ class CustomNav extends React.Component{
     return data.map((item,index)=>{
       if(item.children){
         return (
-          <SubMenu title={item.name}>
+          <SubMenu title={item.name} className="bg">
             {this.renderItem(item.children)}
           </SubMenu>
         )
       }else{
-        return <Menu.Item onClick={this.jump.bind(this,item.path)}>{item.name}</Menu.Item>
+        return <Menu.Item className="sec" onClick={this.jump.bind(this,item.path)}>{item.name}</Menu.Item>
       }
       
     })

@@ -9,14 +9,17 @@ import ActionCreator from '../../store/actionCreator'
 
 class Admin extends React.Component{
   componentDidMount(){
-    // this.props.changeTokenModel(true)  
-    // 同步做法
-
-    this.props.changeTokenModelAsync()
-    //已经将异步封装到 actionCreator中
+    //设置一个异步假接口
+    setTimeout(() => {
+      if(false){  // 验证是否登录
+        
+      }else{
+        this.props.changeTokenModel(true)
+      }
+    }, 2000);
   }
   render(){
-    console.log('首页',this)
+    console.log(this)
     return(
       <div className="admin">
         <TokenModel/>

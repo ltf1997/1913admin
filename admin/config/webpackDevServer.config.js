@@ -88,6 +88,10 @@ module.exports = function(proxy, allowedHost) {
         pathRewrite:{
           '^/yapi':''
         }
+      },
+      '/api':{
+        target:'http://47.95.207.1',//代理的域名
+        changeOrigin:true,
       }
     },
     before(app, server) {
