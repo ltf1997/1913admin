@@ -1,5 +1,6 @@
 import React from 'react'
 import {Card,Table,Spin,Pagination} from 'antd'
+import UserUpdata from '../userUpdata'
 import './index.less'
 
 
@@ -72,7 +73,9 @@ class UserList extends React.Component{
     this.state={
       spinning:true,
       nowPage:1,
-      list:[]
+      list:[],
+      updataState:false,
+      updataData:null
     }
   }
   componentDidMount(){
@@ -80,7 +83,9 @@ class UserList extends React.Component{
     this.refreshData(page)
   }
   refreshData=(page)=>{
-    this.setState({spinning:true})
+
+    this.setState({spinning:true,updataState:false}) //修改后顺便关闭模态框  子父通信传递该方法
+
     let url = `/api/getThemeById?themeid=3&page=${page}`
     this.$axios.get(url)
     .then((data)=>{
@@ -96,10 +101,16 @@ class UserList extends React.Component{
       this.setState({spinning:false})
     })
   }
+  updata=()=>{
+    this.setState({updataState:true})
+  }
   render(){
     let {spinning,list} = this.state
     return(
       <div className="userlist-box">
+        {!this.state.updataState || <UserUpdata data={this.state.updataData} refreshData={this.refreshData}></UserUpdata>}
+        <button onClick={this.updata}>修改</button>
+        {/* 设置修改按钮点击改变出现模态框  并将点击项的 data给this.state.updataData   让组件通过 props传递渲染表单*/}
         <Card style={{background:'pink',width:'1200px',margin:'0px auto'}}>
           <Spin spinning={spinning}>
             <Table 

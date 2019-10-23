@@ -3,10 +3,15 @@ import {Card,message} from 'antd'
 import './index.less'
 
 
-class UserAdd extends React.Component{
+class UserUpdata extends React.Component{
   constructor(props){
     super(props)
     this.state={
+      // img:props.data.img||'',
+      // name:props.data.name||'',
+      // price:props.data.price||'',
+      // desc:props.data.desc||''
+      //点击渲染该项的详细内容
       img:'',
       name:'',
       price:'',
@@ -19,6 +24,8 @@ class UserAdd extends React.Component{
       message.error('请上传图片')
     }else{
       //发起 Ajax请求
+      this.props.refreshData()
+      
     }
   }
 
@@ -36,9 +43,9 @@ class UserAdd extends React.Component{
   }
   render(){
     return(
-      <div className="userAdd-box">
+      <div className="userUpdata-box">
         <Card>
-          添加信息<br/>
+          修改信息<br/>
           <label>名称：</label><input type="text" value={this.state.name} onChange={
             (e)=>{this.setState({name:e.target.value})}}
           /><br/>
@@ -52,7 +59,7 @@ class UserAdd extends React.Component{
 
           <input type="file" ref="file"/>
           <button onClick={this.upload}>上传</button>
-          <img src={this.state.img}/>
+          {/* <img src={this.state.img}/> */}
           <br/>
           <button onClick={this.submit}>提交</button>
         </Card>
@@ -61,4 +68,4 @@ class UserAdd extends React.Component{
   }
 }
 
-export default UserAdd
+export default UserUpdata
